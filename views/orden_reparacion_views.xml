@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- Accion taller.orden -->
+    <record id="taller_orden_action" model="ir.actions.act_window">
+        <field name="name">Orden</field>
+        <field name="res_model">taller.orden</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new order.
+            </p>
+        </field>
+    </record>
+
+<!-- Vistas tipo list -->
+    <record id="taller_orden_view_list" model="ir.ui.view">
+        <field name="name">taller.orden.view.list</field>
+        <field name="model">taller.orden</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="vehicle_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+<!-- Vistas tipo form -->
+    <record id="taller_orden_view_form" model="ir.ui.view">
+        <field name="name">taller.orden.view.form</field>
+        <field name="model">taller.orden</field>
+        <field name="arch" type="xml">
+            <form string="Orden">
+                <group>
+                    <field name="name" string="Id"/>
+                    <field name="partner_id" string="Cliente"/>
+                    <field name="vehicle_id" string="Id vehículo"/>
+                    <field name="state" string="Estado"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

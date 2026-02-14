@@ -1,0 +1,26 @@
+# Archivos Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos Odoo generados
+*.log
+*.swp
+*.swo
+
+# Archivos temporales
+/tmp/
+*.tmp
+
+# Entornos virtuales
+.env
+env/
+venv/
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
