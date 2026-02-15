@@ -38,6 +38,9 @@ class TallerOrden(models.Model):
         string='Lineas de ordenes'
     )
 
+    date = fields.Datetime(required=True, default=fields.Date.today)
+    notes = fields.Text()
+
     # Secuencia
     @api.model_create_multi
     def create(self, vals_list):
