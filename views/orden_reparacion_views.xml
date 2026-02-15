@@ -32,12 +32,25 @@
         <field name="model">taller.orden</field>
         <field name="arch" type="xml">
             <form string="Orden">
-                <group>
-                    <field name="name" string="Id"/>
-                    <field name="partner_id" string="Cliente"/>
-                    <field name="vehicle_id" string="Id vehículo"/>
-                    <field name="state" string="Estado"/>
-                </group>
+                <sheet>   
+                    <group>
+                        <field name="name" string="Id"/>
+                        <field name="partner_id" string="Cliente"/>
+                        <field name="vehicle_id" string="Id vehículo"/>
+                        <field name="state" string="Estado"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Lineas de orden">
+                            <group>
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="subtotal"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>
