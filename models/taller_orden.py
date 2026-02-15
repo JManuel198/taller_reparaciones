@@ -11,25 +11,30 @@ class TallerOrden(models.Model):
         string='Orden ID',
         required=True
     )
+
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         string='Cliente',
         required=True
     )
+
     vehicle_id = fields.Many2one(
         comodel_name='fleet.vehicle',
         string='Vehículo'
     )
+
     state = fields.Selection([
         ('draft', 'Borrador'),
         ('cotizacion', 'Cotización'),
         ('en_reparacion', 'En Reparación'),
         ('listo', 'Listo'),
         ('facturado', 'Facturado')
-    ], string='Estado', default='draft')
+    ], string='Estado', default='draft'
+    )
 
     line_ids = fields.One2many(
-        commodel_name='taller.orden.linea',
+        comodel_name='taller.orden.linea',
+        inverse_name='orden_id',
         string='Lineas de ordenes'
     )
 

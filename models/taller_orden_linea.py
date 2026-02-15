@@ -5,11 +5,12 @@ class TallerOrdenLinea(models.Model):
     _description = 'Lineas de orden'
 
     orden_id = fields.Many2one(
-        commodel_name='taller.orden'
+        comodel_name='taller.orden',
+        string='Orden'
     )
 
     producto_id = fields.Many2one(
-        commodel_name='product.product',
+        comodel_name='product.product',
         string='Producto',
         help='Productos consumidos en la reparación'
     )
@@ -19,9 +20,9 @@ class TallerOrdenLinea(models.Model):
     price_unit = fields.Float(string='Precio unitario')
 
     currency_id = fields.Many2one(
-    commodel_name='res.currency',
-    default=lambda self: self.env.company.currency_id,
-    string='Moneda'
+        comodel_name='res.currency',
+        default=lambda self: self.env.company.currency_id,
+        string='Moneda'
     )
 
     subtotal = fields.Monetary(
