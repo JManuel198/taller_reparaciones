@@ -32,7 +32,7 @@ class TallerOrden(models.Model):
         ('invoiced', 'Facturado')
     ], string='Estado', default='draft', traking=True)
 
-    # Botones
+    # Botones de estado
 
     def action_confirm_quote(self):
         self.state = 'quote'
