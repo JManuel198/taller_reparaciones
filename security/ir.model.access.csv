@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_taller_orden,access_taller_orden,model_taller_orden,,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_taller_orden_linea,access_taller_orden_linea,model_taller_orden_linea,,1,1,1,1
