@@ -8,7 +8,7 @@ class TallerOrden(models.Model):
         readonly=True,
         copy=False,
         default=lambda self: _('New'),
-        string='Id orden',
+        string='Orden ID',
         required=True
     )
     partner_id = fields.Many2one(
@@ -28,7 +28,12 @@ class TallerOrden(models.Model):
         ('facturado', 'Facturado')
     ], string='Estado', default='draft')
 
-    # Secuenciar
+    line_ids = fields.One2many(
+        commodel_name='taller.orden.linea',
+        string='Lineas de ordenes'
+    )
+
+    # Secuencia
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
