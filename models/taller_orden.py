@@ -32,6 +32,25 @@ class TallerOrden(models.Model):
         ('invoiced', 'Facturado')
     ], string='Estado', default='draft', traking=True)
 
+    # Botones
+
+    def action_confirm_quote(self):
+        self.state = 'quote'
+
+    def action_start_repair(self):
+        self.state = 'in_progress'
+    
+    def action_mark_completed(self):
+        self.state = 'completed'
+
+    def action_mark_cancel(self):
+        self.state = 'canceled'
+
+    def action_mark_invoiced(self):
+        self.state = 'invoiced'
+        # Luego la lógica para la factura
+
+
     line_ids = fields.One2many(
         comodel_name='taller.orden.linea',
         inverse_name='orden_id',

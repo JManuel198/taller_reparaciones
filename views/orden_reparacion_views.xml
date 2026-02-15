@@ -33,7 +33,7 @@
         <field name="arch" type="xml">
             <form string="Orden">
                 <header>
-
+                    <!-- No aparece si el estado es distinto a draft (borrador) -->
                     <button 
                         name="action_confirm_quote" 
                         type="object" 
@@ -41,7 +41,7 @@
                         invisible="state != 'draft'" 
                         class="btn-primary"
                     />
-
+                    <!-- No aparece si el estado es distinto a quote (cotización) -->
                     <button 
                         name="action_start_repair" 
                         type="object" 
@@ -49,29 +49,29 @@
                         invisible="state != 'quote'" 
                         class="btn-warning"
                     />
-
+                    <!-- No aparece si el estado es distinto a in_progress (en reparación) -->
                     <button 
-                        name="action_mark_done" 
+                        name="action_mark_completed" 
                         type="object" 
                         string="Marcar como Listo" 
                         invisible="state != 'in_progress'" 
                         class="btn-success"
                     />
-
+                    <!-- No aparece si el estado es completed, invoiced o canceled -->
                     <button
-                        name="action_cancel"
+                        name="action_mark_cancel"
                         type="object"
                         string="Cancelar"
                         invisible="state in ('completed', 'invoiced', 'canceled')" 
-                        class="btn-canceled"
+                        class="btn-danger"
                     />
-
+                    <!-- No aparece si el estado es distinto a completed (completado) -->
                     <button
                         name="action_mark_invoiced"
                         type="object"
                         string="Facturar"
                         invisible="state != 'completed'"
-                        class="btn-invoiced"
+                        class="btn-primary"
                     />
 
                     <field
