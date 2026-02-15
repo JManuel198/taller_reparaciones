@@ -33,6 +33,7 @@
         <field name="arch" type="xml">
             <form string="Orden">
                 <header>
+                
                     <button 
                         name="action_confirm_quote" 
                         type="object" 
@@ -41,7 +42,42 @@
                         class="btn-primary"
                     />
 
-                    
+                    <button 
+                        name="action_start_repair" 
+                        type="object" 
+                        string="Iniciar Reparación" 
+                        states="quote" 
+                        class="btn-warning"
+                    />
+
+                    <button 
+                        name="action_mark_done" 
+                        type="object" 
+                        string="Marcar como Listo" 
+                        states="in_progress" 
+                        class="btn-success"
+                    />
+
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        string="Cancelar"
+                        states="in_progress"
+                    />
+
+                    <button
+                        name="action_mark_invoiced"
+                        type="object"
+                        string="Facturar"
+                        states="done"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,quote,in_process,done,invoiced,canceled"
+                    />
+
                 </header>
                 <sheet>   
                     <group>
