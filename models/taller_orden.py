@@ -29,8 +29,7 @@ class TallerOrden(models.Model):
         ('en_reparacion', 'En Reparación'),
         ('listo', 'Listo'),
         ('facturado', 'Facturado')
-    ], string='Estado', default='draft'
-    )
+    ], string='Estado', default='draft', traking=True)
 
     line_ids = fields.One2many(
         comodel_name='taller.orden.linea',
