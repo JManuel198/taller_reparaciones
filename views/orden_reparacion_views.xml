@@ -41,6 +41,7 @@
                     </group>
 
                    <notebook>
+                   <!-- Página de lineas de orden -->
                        <page string="Lineas de orden">
                            <field name="line_ids">
                                <list editable="bottom">
@@ -54,6 +55,13 @@
                                 </list>
                            </field>
                        </page>
+
+                    <!-- Página de descripción -->
+                        <page string="Descripción">
+                            <group>
+                            </group>
+                        </page>
+
                    </notebook>
                 </sheet>
             </form>
