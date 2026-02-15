@@ -33,12 +33,12 @@
         <field name="arch" type="xml">
             <form string="Orden">
                 <header>
-                
+
                     <button 
                         name="action_confirm_quote" 
                         type="object" 
                         string="Confirmar Cotización" 
-                        states="draft" 
+                        invisible="state != 'draft'" 
                         class="btn-primary"
                     />
 
@@ -46,7 +46,7 @@
                         name="action_start_repair" 
                         type="object" 
                         string="Iniciar Reparación" 
-                        states="quote" 
+                        invisible="state != 'quote'" 
                         class="btn-warning"
                     />
 
@@ -54,7 +54,7 @@
                         name="action_mark_done" 
                         type="object" 
                         string="Marcar como Listo" 
-                        states="in_progress" 
+                        invisible="state != 'in_progress'" 
                         class="btn-success"
                     />
 
@@ -62,20 +62,22 @@
                         name="action_cancel"
                         type="object"
                         string="Cancelar"
-                        states="in_progress"
+                        invisible="state in ('completed', 'invoiced', 'canceled')" 
+                        class="btn-canceled"
                     />
 
                     <button
                         name="action_mark_invoiced"
                         type="object"
                         string="Facturar"
-                        states="done"
+                        invisible="state != 'completed'"
+                        class="btn-invoiced"
                     />
 
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,quote,in_process,done,invoiced,canceled"
+                        statusbar_visible="quote,in_process,completed,invoiced,canceled"
                     />
 
                 </header>

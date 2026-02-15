@@ -27,7 +27,7 @@ class TallerOrden(models.Model):
         ('draft', 'Borrador'),
         ('quote', 'Cotización'),
         ('in_progress', 'En Reparación'),
-        ('done', 'Listo'),
+        ('completed', 'Completado'),
         ('canceled', 'Cancelado'),
         ('invoiced', 'Facturado')
     ], string='Estado', default='draft', traking=True)
