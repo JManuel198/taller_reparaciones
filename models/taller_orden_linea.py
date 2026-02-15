@@ -9,7 +9,7 @@ class TallerOrdenLinea(models.Model):
         string='Orden'
     )
 
-    producto_id = fields.Many2one(
+    product_id = fields.Many2one(
         comodel_name='product.product',
         string='Producto',
         help='Productos consumidos en la reparación'

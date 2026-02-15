@@ -40,16 +40,19 @@
                         <field name="state" string="Estado"/>
                     </group>
 
-                    <notebook>
-                        <page string="Lineas de orden">
-                            <group>
-                                <field name="product_id"/>
-                                <field name="quantity"/>
-                                <field name="price_unit"/>
-                                <field name="subtotal"/>
-                            </group>
-                        </page>
-                    </notebook>
+                   <notebook>
+                       <page string="Lineas de orden">
+                           <field name="line_ids">
+                               <list editable="bottom">
+                                   <field name="product_id" options="{'no_create': True}"/>
+                                   <field name="quantity"/>
+                                   <field name="price_unit"/>
+                                   <field name="subtotal" readonly="1"/>
+                                   <field name="currency_id" invisible="1"/>
+                                </list>
+                           </field>
+                       </page>
+                   </notebook>
                 </sheet>
             </form>
         </field>
