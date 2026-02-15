@@ -59,6 +59,8 @@
                     <!-- Página de descripción -->
                         <page string="Descripción">
                             <group>
+                                <field name="date"/>
+                                <field name="notes"/>
                             </group>
                         </page>
 
