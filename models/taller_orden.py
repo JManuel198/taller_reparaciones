@@ -25,10 +25,10 @@ class TallerOrden(models.Model):
 
     state = fields.Selection([
         ('draft', 'Borrador'),
-        ('cotizacion', 'Cotización'),
-        ('en_reparacion', 'En Reparación'),
-        ('listo', 'Listo'),
-        ('facturado', 'Facturado')
+        ('quote', 'Cotización'),
+        ('in_progress', 'En Reparación'),
+        ('done', 'Listo'),
+        ('invoiced', 'Facturado')
     ], string='Estado', default='draft', traking=True)
 
     line_ids = fields.One2many(

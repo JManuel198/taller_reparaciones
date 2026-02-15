@@ -32,6 +32,17 @@
         <field name="model">taller.orden</field>
         <field name="arch" type="xml">
             <form string="Orden">
+                <header>
+                    <button 
+                        name="action_confirm_quote" 
+                        type="object" 
+                        string="Confirmar Cotización" 
+                        states="draft" 
+                        class="btn-primary"
+                    />
+
+                    
+                </header>
                 <sheet>   
                     <group>
                         <field name="name" string="Id"/>
