@@ -27,6 +27,7 @@ class TallerOrdenLinea(models.Model):
 
     subtotal = fields.Monetary(
         string='Subtotal',
+        readonly=True,
         compute='_compute_subtotal',
         store=True,
         currency_field='currency_id'
