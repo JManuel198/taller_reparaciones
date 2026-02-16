@@ -30,7 +30,7 @@ class TallerOrden(models.Model):
         ('completed', 'Completado'),
         ('canceled', 'Cancelado'),
         ('invoiced', 'Facturado')
-    ], string='Estado', default='draft', traking=True)
+    ], string='Estado', default='draft', tracking=True)
 
     # Botones de estado
 
