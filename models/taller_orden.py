@@ -51,7 +51,9 @@ class TallerOrden(models.Model):
         })
 
         for line in self.line_ids:
-            if line.product_id.type == 'consu':
+            product = line.product_id
+
+            if product.type == 'consu':
                 self.env['stock.move'].create({
                     'name': f'Orden {self.name}',
                     'product_id': line.product_id.id,
@@ -61,6 +63,21 @@ class TallerOrden(models.Model):
                     'location_id': self.env.ref('stock.stock_location_stock').id,
                     'location_dest_id': self.env.ref('stock.stock_location_customers').id,
                 })
+
+            elif product.type == 'combo':
+                # Desglosar sus componentes
+                for component in product.combo_component_ids:
+                    if component.product_id.type == 'consu':
+                        # Moves de componentes físicos
+                        self.env['stock.move'].create({
+                            'name': f'Orden {self.name} - {component.product_id.name}',
+                            'product_id': component.product_id.id,
+                            'product_uom_qty': line.quantity * component.quantity,  
+                            'product_uom': component.product_id.uom_id.id,
+                            'picking_id': picking.id,
+                            'location_id': picking.location_id.id,
+                            'location_dest_id': picking.location_dest_id.id,
+                        })
 
         picking.action_confirm()
         picking.action_assign()
