@@ -14,7 +14,7 @@ class ProductoComboComponentes(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product',
         string='Componente',
-        required='True'
+        required=True
     )
 
     quantity = fields.Float(
