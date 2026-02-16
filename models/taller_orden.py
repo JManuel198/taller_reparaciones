@@ -39,9 +39,32 @@ class TallerOrden(models.Model):
 
     def action_start_repair(self):
         self.state = 'in_progress'
-    
+
     def action_mark_completed(self):
         self.state = 'completed'
+
+        picking = self.env['stock.picking'].create({
+            'picking_type_id': self.env.ref('stock.picking_type_out').id,
+            'location_id': self.env.ref('stock.stock_location_stock').id,
+            'location_dest_id': self.env.ref('stock.stock_location_customers').id,
+            'origin': self.name,
+        })
+
+        for line in self.line_ids:
+            if line.product_id.type == 'consu':
+                self.env['stock.move'].create({
+                    'name': f'Orden {self.name}',
+                    'product_id': line.product_id.id,
+                    'product_uom_qty': line.quantity,
+                    'product_uom': line.product_id.uom_id.id,
+                    'picking_id':picking.id,
+                    'location_id': self.env.ref('stock.stock_location_stock').id,
+                    'location_dest_id': self.env.ref('stock.stock_location_customers').id,
+                })
+
+        picking.action_confirm()
+        picking.action_assign()
+        picking.button_validate()
 
     def action_mark_cancel(self):
         self.state = 'canceled'
