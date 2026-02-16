@@ -89,21 +89,21 @@
                         <field name="state" string="Estado"/>
                     </group>
 
-                   <notebook>
-                   <!-- Página de lineas de orden -->
-                       <page string="Lineas de orden">
-                           <field name="line_ids">
-                               <list editable="bottom">
-                                   <field name="product_id" options="{'no_create': True}"/>
-                                   <field name="quantity"/>
-                                   <field name="price_unit"/>
-                                   <field name="subtotal" readonly="1"/>
-                                   <!--
-                                   <field name="currency_id" invisible="1"/>
-                                   -->
+                    <notebook>
+                    <!-- Página de lineas de orden -->
+                        <page string="Lineas de orden">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id" options="{'no_create': True}"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="subtotal" readonly="1"/>
+                                    <!--
+                                    <field name="currency_id" invisible="1"/>
+                                    -->
                                 </list>
-                           </field>
-                       </page>
+                            </field>
+                        </page>
 
                     <!-- Página de descripción -->
                         <page string="Descripción">
@@ -113,7 +113,7 @@
                             </group>
                         </page>
 
-                   </notebook>
+                    </notebook>
                 </sheet>
             </form>
         </field>
