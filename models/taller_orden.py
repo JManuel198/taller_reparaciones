@@ -20,7 +20,8 @@ class TallerOrden(models.Model):
 
     vehicle_id = fields.Many2one(
         comodel_name='fleet.vehicle',
-        string='Vehículo'
+        string='Vehículo',
+        required=True
     )
 
     state = fields.Selection([
@@ -36,6 +37,7 @@ class TallerOrden(models.Model):
 
     def action_confirm_quote(self):
         self.state = 'quote'
+        # Si no hay producto, no permite confirmar borrador, hacer
 
     def action_start_repair(self):
         self.state = 'in_progress'
@@ -43,16 +45,17 @@ class TallerOrden(models.Model):
     def action_mark_completed(self):
         self.state = 'completed'
 
+        # contenedor de movimientos
         picking = self.env['stock.picking'].create({
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
             'location_id': self.env.ref('stock.stock_location_stock').id,
             'location_dest_id': self.env.ref('stock.stock_location_customers').id,
             'origin': self.name,
         })
-
+        # iterar cada producto 
         for line in self.line_ids:
             product = line.product_id
-
+            # si el producto es consumible, se mueve a cliente, si es servicio no.
             if product.type == 'consu':
                 self.env['stock.move'].create({
                     'name': line.product_id.name,
@@ -64,16 +67,16 @@ class TallerOrden(models.Model):
                     'location_dest_id': picking.location_dest_id.id,
                 })
 
-        picking.action_confirm()
-        picking.action_assign()
-        picking.button_validate()
+        picking.action_confirm() # confirmar
+        picking.action_assign() # asignar stock
+        picking.button_validate() # validar y restar del On Hand
 
     def action_mark_cancel(self):
         self.state = 'canceled'
 
     def action_mark_invoiced(self):
         self.state = 'invoiced'
-        # Luego la lógica para la factura
+        # abajo va la lógica para la facturación
 
 
     line_ids = fields.One2many(
@@ -85,7 +88,7 @@ class TallerOrden(models.Model):
     date = fields.Datetime(required=True, default=fields.Date.today)
     notes = fields.Text()
 
-    # Secuencia
+    # Secuencia de ordenes
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

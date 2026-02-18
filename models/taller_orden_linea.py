@@ -17,7 +17,7 @@ class TallerOrdenLinea(models.Model):
 
     quantity = fields.Integer(string='Cantidad')
 
-    price_unit = fields.Float(string='Precio unitario')
+    price_unit = fields.Monetary(string='Precio unitario')
 
     currency_id = fields.Many2one(
         comodel_name='res.currency',
