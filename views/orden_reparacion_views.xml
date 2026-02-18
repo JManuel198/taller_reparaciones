@@ -21,7 +21,7 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="vehicle_id"/>
-                <field name="date"/>
+                <field name="date" string="Fecha"/>
                 <field name="state"/>
             </list>
         </field>
@@ -74,7 +74,7 @@
                         invisible="state != 'completed'"
                         class="btn-primary"
                     />
-
+                    <!-- Barra de estados -->
                     <field
                         name="state"
                         widget="statusbar"
@@ -87,7 +87,9 @@
                         <field name="name" string="Id"/>
                         <field name="partner_id" string="Cliente"/>
                         <field name="vehicle_id" string="Id vehículo"/>
-                        <field name="date"/>
+                    </group>
+                    <group>
+                        <field name="date" string="Fecha"/>
                         <field name="state" string="Estado" readonly="1"/>
                     </group>
 
