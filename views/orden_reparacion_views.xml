@@ -21,6 +21,7 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="vehicle_id"/>
+                <field name="date"/>
                 <field name="state"/>
             </list>
         </field>
