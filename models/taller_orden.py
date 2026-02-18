@@ -37,7 +37,7 @@ class TallerOrden(models.Model):
 
     def action_confirm_quote(self):
         self.state = 'quote'
-        # Si no hay producto, no permite confirmar borrador, hacer
+        # Añadir que si no hay producto, no permite confirmar borrador
 
     def action_start_repair(self):
         self.state = 'in_progress'
