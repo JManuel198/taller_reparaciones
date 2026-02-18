@@ -8,7 +8,7 @@ class TallerOrden(models.Model):
         readonly=True,
         copy=False,
         default=lambda self: _('New'),
-        string='Orden ID',
+        string='ID',
         required=True
     )
 
