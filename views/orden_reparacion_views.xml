@@ -84,13 +84,15 @@
                 </header>
                 <sheet>   
                     <group>
-                        <field name="name" string="Id"/>
-                        <field name="partner_id" string="Cliente"/>
-                        <field name="vehicle_id" string="Id vehículo"/>
-                    </group>
-                    <group>
-                        <field name="date" string="Fecha"/>
-                        <field name="state" string="Estado" readonly="1"/>
+                        <group>
+                            <field name="name" string="Id"/>
+                            <field name="partner_id" string="Cliente"/>
+                            <field name="vehicle_id" string="Vehículo"/>
+                        </group>
+                        <group>
+                            <field name="date" string="Fecha"/>
+                            <field name="state" string="Estado" readonly="1"/>
+                        </group>
                     </group>
 
                     <notebook>
