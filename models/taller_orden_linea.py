@@ -11,22 +11,19 @@ class TallerOrdenLinea(models.Model):
 
     product_id = fields.Many2one(
         comodel_name='product.product',
-        string='Producto',
-        help='Productos consumidos en la reparación'
+        help='Productos consumidos en la reparación',
     )
 
-    quantity = fields.Integer(string='Cantidad')
+    quantity = fields.Integer()
 
-    price_unit = fields.Monetary(string='Precio unitario')
+    price_unit = fields.Monetary()
 
     currency_id = fields.Many2one(
         comodel_name='res.currency',
-        default=lambda self: self.env.company.currency_id,
-        string='Moneda'
+        default=lambda self: self.env.company.currency_id
     )
 
     subtotal = fields.Monetary(
-        string='Subtotal',
         readonly=True,
         compute='_compute_subtotal',
         store=True,

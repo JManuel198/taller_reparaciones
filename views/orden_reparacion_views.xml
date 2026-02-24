@@ -18,11 +18,11 @@
         <field name="model">taller.orden</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="vehicle_id"/>
+                <field name="name" string="ID"/>
+                <field name="partner_id" string="Cliente"/>
+                <field name="vehicle_id" string='Vehículo'/>
                 <field name="date" string="Fecha"/>
-                <field name="state"/>
+                <field name="state" string="Estado"/>
             </list>
         </field>
     </record>
@@ -85,9 +85,9 @@
                 <sheet>   
                     <group>
                         <group>
-                            <field name="name" string="Id"/>
-                            <field name="partner_id" string="Cliente"/>
-                            <field name="vehicle_id" string="Vehículo"/>
+                            <field name="name" string="ID"/>
+                            <field name="partner_id" string="Cliente" placeholder="Seleccione el cliente"/>
+                            <field name="vehicle_id" string="Vehículo" placeholder="Seleccione el vehículo"/>
                         </group>
                         <group>
                             <field name="date" string="Fecha"/>
@@ -100,12 +100,12 @@
                         <page string="Lineas de orden">
                             <field name="line_ids">
                                 <list editable="bottom">
-                                    <field name="product_id" options="{'no_create': True}"/>
-                                    <field name="quantity"/>
-                                    <field name="price_unit" readonly="1"/>
-                                    <field name="subtotal" readonly="1"/>
+                                    <field name="product_id" string="Producto" options="{'no_create': True}"/>
+                                    <field name="quantity" string="Cantidad"/>
+                                    <field name="price_unit" string="Precio Unitario" readonly="1"/>
+                                    <field name="subtotal" string="Subtotal" readonly="1"/>
                                     <!--
-                                    <field name="currency_id" invisible="1"/>
+                                    <field name="currency_id" string="Moneda" invisible="1"/>
                                     -->
                                 </list>
                             </field>
@@ -114,7 +114,7 @@
                     <!-- Página de descripción -->
                         <page string="Descripción">
                             <group>
-                                <field name="notes" placeholder="Descripción adicional de la orden"/>
+                                <field name="notes" placeholder="Añade una descripción adicional de la orden"/>
                             </group>
                         </page>
 

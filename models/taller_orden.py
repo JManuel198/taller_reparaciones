@@ -8,20 +8,17 @@ class TallerOrden(models.Model):
         readonly=True,
         copy=False,
         default=lambda self: _('New'),
-        string='ID',
-        required=True
+        required=True,
     )
 
     partner_id = fields.Many2one(
         comodel_name='res.partner',
-        string='Cliente',
-        required=True
+        required=True,
     )
 
     vehicle_id = fields.Many2one(
         comodel_name='fleet.vehicle',
-        string='Vehículo',
-        required=True
+        required=True,
     )
 
     state = fields.Selection([
@@ -31,7 +28,7 @@ class TallerOrden(models.Model):
         ('completed', 'Completado'),
         ('canceled', 'Cancelado'),
         ('invoiced', 'Facturado')
-    ], string='Estado', default='draft')
+    ], default='draft')
 
     # Botones de estado
 
