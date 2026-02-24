@@ -8,6 +8,7 @@
         'contacts',
         'product',
         'account_fleet',
+        'acount_move',
     ],
     'data': [
         'security/ir.model.access.csv',

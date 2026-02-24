@@ -85,6 +85,23 @@ class TallerOrden(models.Model):
     date = fields.Datetime(required=True, default=fields.Date.today)
     notes = fields.Text()
 
+    invoice_id = fields.Many2one(
+        comodel_name='account.move',
+        string='Facturas',
+        readonly=True,
+        copy=False
+        )
+
+    invoice_count = fields.Integer(
+        string='Facturas',
+        compute='_compute_invoice_count'
+        )
+
+    # smart button
+    def _compute_invoice_count(self):
+        for record in self:
+            record.invoice_count = 1 if record.invoice_id else 0
+
     # Secuencia de ordenes
     @api.model_create_multi
     def create(self, vals_list):
@@ -93,4 +110,5 @@ class TallerOrden(models.Model):
             if vals.get('name', 'New') == 'New':
                 vals['name'] = self.env['ir.sequence'].next_by_code('taller.orden') or _('New')
         return super().create(vals_list)
+
 
