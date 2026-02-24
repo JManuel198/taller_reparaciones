@@ -1,4 +1,5 @@
 from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 class TallerOrden(models.Model):
     _name = 'taller.orden'
