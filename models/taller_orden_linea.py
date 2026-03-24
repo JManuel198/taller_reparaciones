@@ -36,7 +36,7 @@ class TallerOrdenLinea(models.Model):
         for record in self:
             record.subtotal = record.quantity * record.price_unit
     
-    # Compute precio de venta de productos
+    # Onchange precio de venta de productos
     @api.onchange('product_id')
     def _onchange_product_id(self):
         for line in self:
