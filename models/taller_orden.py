@@ -74,8 +74,6 @@ class TallerOrden(models.Model):
 
     def action_mark_invoiced(self):
         self.state = 'invoiced'
-        # abajo va la lógica para la facturación
-
 
     line_ids = fields.One2many(
         comodel_name='taller.orden.linea',
@@ -85,23 +83,6 @@ class TallerOrden(models.Model):
 
     date = fields.Datetime(required=True, default=fields.Date.today)
     notes = fields.Text()
-
-    invoice_id = fields.Many2one(
-        comodel_name='account.move',
-        string='Facturas',
-        readonly=True,
-        copy=False
-        )
-
-    invoice_count = fields.Integer(
-        string='Facturas',
-        compute='_compute_invoice_count'
-        )
-
-    # smart button
-    def _compute_invoice_count(self):
-        for record in self:
-            record.invoice_count = 1 if record.invoice_id else 0
 
     # Secuencia de ordenes
     @api.model_create_multi
