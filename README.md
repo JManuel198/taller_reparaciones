@@ -1,1 +1,1 @@
-# Módulo para talleres de reparación de vehículos.
+# Módulo de práctica en Odoo para talleres de reparación de vehículos.
