@@ -1,1 +1,3 @@
-# Módulo personalizado desarrollado en Odoo 18.0 para la gestión integral de un taller de reparaciones. Cubre el flujo completo de una orden de servicio: registro de clientes, control de inventario de piezas, seguimiento de estados por reparación y generación de facturas. Construido con modelos en Python y vistas definidas en XML.
+# Módulo personalizado desarrollado en Odoo 18.0 para la gestión integral de un taller de reparaciones. 
+Cubre el flujo completo de una orden de servicio: registro de clientes, control de inventario de piezas, seguimiento de estados por reparación y generación de facturas. 
+Construido con modelos en Python y vistas definidas en XML.
