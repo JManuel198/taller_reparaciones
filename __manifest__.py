@@ -8,12 +8,14 @@
         'contacts',
         'product',
         'account_fleet',
+        'stock',
+        'account',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/orden_reparacion_views.xml',
         'data/sequence_ordenes.xml',
-        'data/taller_reparaciones_menus.xml',
+        'data/taller_reparaciones_menus.xml'
     ],
     'application': True
 }
