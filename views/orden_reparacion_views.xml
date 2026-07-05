@@ -78,7 +78,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="quote,in_process,completed,invoiced,canceled"
+                        statusbar_visible="quote,in_progress,completed,invoiced,canceled"
                     />
 
                 </header>
@@ -120,6 +120,7 @@
 
                     </notebook>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>

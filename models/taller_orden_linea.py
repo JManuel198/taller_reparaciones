@@ -14,13 +14,18 @@ class TallerOrdenLinea(models.Model):
         help='Productos consumidos en la reparación',
     )
 
-    quantity = fields.Integer()
+    quantity = fields.Float(digits='Product Unit of Measure')
 
     price_unit = fields.Monetary()
 
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         default=lambda self: self.env.company.currency_id
+    )
+
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        default=lambda self: self.env.company,
     )
 
     subtotal = fields.Monetary(

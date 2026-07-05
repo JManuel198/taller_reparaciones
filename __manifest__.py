@@ -10,6 +10,7 @@
         'account_fleet',
         'stock',
         'account',
+        'mail',
     ],
     'data': [
         'security/ir.model.access.csv',

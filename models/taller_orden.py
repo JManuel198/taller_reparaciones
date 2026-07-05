@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 class TallerOrden(models.Model):
     _name = 'taller.orden'
     _description = 'Ordenes del taller'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(
         readonly=True,
@@ -29,7 +30,7 @@ class TallerOrden(models.Model):
         ('completed', 'Completado'),
         ('canceled', 'Cancelado'),
         ('invoiced', 'Facturado')
-    ], default='draft')
+    ], default='draft', tracking=True)
 
     # Botones de estado
 
@@ -81,8 +82,13 @@ class TallerOrden(models.Model):
         string='Lineas de ordenes'
     )
 
-    date = fields.Datetime(required=True, default=fields.Date.today)
+    date = fields.Datetime(required=True, default=fields.Datetime.now)
     notes = fields.Text()
+
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        default=lambda self: self.env.company,
+    )
 
     # Secuencia de ordenes
     @api.model_create_multi

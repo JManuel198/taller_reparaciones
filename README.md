@@ -17,6 +17,7 @@ Módulo de Odoo 18 para la gestión de **órdenes de reparación en un taller de
 | `account_fleet` | Vehículos (`fleet.vehicle`) + contabilidad |
 | `stock` | Movimientos de inventario (`stock.picking` / `stock.move`) |
 | `account` | Base para la futura facturación (`account.move`) |
+| `mail` | Chatter, seguidores e historial de cambios (`mail.thread` / `mail.activity.mixin`) |
 
 ## Estructura del módulo
 
@@ -42,8 +43,8 @@ taller_reparaciones/
 ## Funcionalidad implementada
 
 ### Modelos
-- **`taller.orden`** — Cabecera de la orden: cliente, vehículo, fecha, notas, estado y líneas.
-- **`taller.orden.linea`** — Líneas de la orden: producto, cantidad, precio unitario y subtotal calculado.
+- **`taller.orden`** — Cabecera de la orden: cliente, vehículo, fecha (`Datetime`, por defecto la fecha/hora actual), notas, estado, líneas y compañía (`company_id`).
+- **`taller.orden.linea`** — Líneas de la orden: producto, cantidad (`Float`, admite decimales), precio unitario, subtotal calculado y compañía (`company_id`).
 
 ### Ciclo de vida (estados)
 `Borrador → Cotización → En Reparación → Completado → Facturado` (con salida a `Cancelado`).
@@ -63,10 +64,17 @@ Al marcar la orden como **Completado**, se genera automáticamente un albarán d
 - Vista lista y vista formulario de órdenes.
 - Menú raíz *Taller Reparaciones → Órdenes*.
 - Barra de estados (statusbar) y pestañas de *Líneas de orden* y *Descripción*.
+- Chatter en el formulario (mensajes, seguidores y actividades).
+
+### Trazabilidad
+El modelo `taller.orden` hereda `mail.thread` y `mail.activity.mixin`. El campo `state` usa `tracking=True`, por lo que cada cambio de estado queda registrado en el historial de la orden.
+
+### Multicompañía
+Ambos modelos incluyen `company_id`, que por defecto toma la compañía activa. Quedan pendientes las reglas de registro (`ir.rule`) por compañía (ver *Seguridad*).
 
 ## Lo que falta por añadir / mejorar
 
-### 🔴 Facturación (principal pendiente)
+### Facturación (principal pendiente)
 El botón **Facturar** (`action_mark_invoiced`) solo cambia el estado a `invoiced`; **no genera ninguna factura real**. Aunque el módulo ya depende de `account`, falta:
 - Crear un `account.move` (factura de cliente) a partir de las líneas de la orden.
 - Mapear cada `taller.orden.linea` a una `account.move.line` (producto, cantidad, precio, impuestos, cuentas).
@@ -74,29 +82,19 @@ El botón **Facturar** (`action_mark_invoiced`) solo cambia el estado a `invoice
 - Gestión de impuestos (IVA) y cuentas contables.
 - Control de estado de pago.
 
-### 🟠 Totales de la orden
+### Totales de la orden
 - No existe un campo de **total** en la cabecera (suma de subtotales de las líneas). Debería añadirse un `amount_total` calculado.
 
-### 🟠 Validaciones y reglas de negocio
+### Validaciones y reglas de negocio
 - El TODO en `action_confirm_quote` sigue pendiente: impedir confirmar una orden sin líneas/productos.
 - No se puede impedir facturar/completar una orden vacía.
 - El vehículo no se filtra por el cliente seleccionado (se pueden elegir vehículos de otros clientes).
 
-### 🟡 Trazabilidad y comunicación
-- Sin `mail.thread` / `mail.activity.mixin`: no hay chatter, seguidores ni historial de cambios de estado.
-- El campo `state` no tiene `tracking=True`.
-
-### 🟡 Informes
+### Informes
 - No hay informe PDF (orden de trabajo / presupuesto imprimible).
 
-### 🟡 Seguridad
+### Seguridad
 - El acceso (`ir.model.access.csv`) se concede sin grupos (`group_id` vacío) → acceso total para cualquier usuario. Faltan grupos de seguridad (p. ej. *Usuario de Taller* / *Responsable de Taller*) y reglas de registro.
-
-### 🟢 Detalles menores
-- `date` está declarado como `Datetime` pero su valor por defecto es `fields.Date.today` (inconsistencia de tipo).
-- `statusbar_visible` en la vista usa `in_process`, pero el valor real del estado es `in_progress` (no coincide).
-- `quantity` es `Integer` (no admite decimales; podría convenir `Float`).
-- Sin soporte multicompañía (`company_id`) en los modelos.
 
 ## Instalación
 
