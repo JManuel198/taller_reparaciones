@@ -39,8 +39,6 @@ taller_reparaciones/
 └── DETALLES.md
 ```
 
-> Para un desglose técnico archivo por archivo (Python → XML → CSV), consulta **[DETALLES.md](DETALLES.md)**.
-
 ## Funcionalidad implementada
 
 ### Modelos
